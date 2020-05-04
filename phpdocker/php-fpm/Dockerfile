@@ -1,10 +1,25 @@
-FROM phpdockerio/php73-fpm:latest
+FROM php:7.4-fpm
 WORKDIR "/application"
 
 # Install selected extensions and other stuff
-RUN apt-get update \
-    && apt-get -y --no-install-recommends install wget php7.3-mysql git \
-    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN apt-get update
+RUN apt-get install -y git zip libonig-dev libxml2-dev wget vim libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+RUN docker-php-ext-install mysqli mbstring pdo pdo_mysql xml pcntl \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd
+
+RUN pecl install xdebug 
+RUN docker-php-ext-enable xdebug
+
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini.new
+RUN cat /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini >> /usr/local/etc/php/conf.d/xdebug.ini.new \
+    && mv /usr/local/etc/php/conf.d/xdebug.ini.new /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+ARG user
+ARG uid
+
+RUN useradd -m -u $uid $user
+
 
 # Install Composer
 ##################
