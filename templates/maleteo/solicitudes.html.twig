@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+  <header>
+    <picture><img class="logo-header" src="assets/img/logo.svg" alt="logo-maleteo"></picture>
+  </header>
+{% endblock %}
+
+{% block body %}
+ 
+<div class="text-center">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ciudad</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for solicitud in solicitudes %}
+      <tr>
+        <th scope="row">{{solicitud.id}}</th>
+        <td>{{solicitud.nombre}}</td>
+        <td>{{solicitud.email}}</td>
+        <td>{{solicitud.ciudad}}</td>
+      </tr>
+  {% endfor %}
+    </tbody>
+  </table>
+</div> 
+{% endblock %}
+
+{% block footer %}
+  <footer>
+    <picture><img src="assets/img/logo.svg" alt="logo-maleteo"></picture>
+    <p>Hecho con <span class="heart">&hearts;</span> en Madrid</p>
+  </footer>
+{% endblock %}

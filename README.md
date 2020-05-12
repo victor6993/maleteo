@@ -93,4 +93,14 @@ composer install
 Una vez hecho esto, en la URL http://localhost:8000 tendremos nuestra aplicación Symfony
 recién instalada.
 
+## Contributors
 
+- Victor Wang Zhu
+
+---
+
+## License & copyright
+
+Victor Wang
+
+Licensed under the [MIT License](LICENSE).

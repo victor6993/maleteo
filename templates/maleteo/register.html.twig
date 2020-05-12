@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+  {{parent()}}
+  <link href="{{asset('css/signin.css')}}" rel="stylesheet">
+  <link href="{{asset('css/styles.css')}}" rel="stylesheet">
+{% endblock %}
+    
+{% block body %}
+<div class="d-flex align-items-center min-vh-100 body-register py-3 py-md-0">
+      <div class="container ">
+        <div class="card login-card login-card-register">
+          <div class="row no-gutters">
+            <div class="col-md-5">
+              <img src="assets/img/jumbo@1x.png" alt="login" class="login-card-img" />
+            </div>
+            <div class="col-md-7">
+              <div class="card-body card-content">
+                {# <div class="brand-wrapper">
+                  <img src="assets/img/logo.svg" alt="logo" class="logo" />
+                </div> #}
+                <p class="login-card-description">Únete a la comunidad</p>
+                {{form_start(registerForm, {'attr': {'class': 'formulario noappearance'}}) }}
+                  <div class="form-group">
+                    {{form_widget(registerForm.username, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                   <div class="form-group mb-4">
+                    {{form_widget(registerForm.password, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div class="form-group">
+                    {{form_widget(registerForm.nombre, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div class="form-group">
+                    {{form_widget(registerForm.email, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div class="form-group">
+                    {{form_widget(registerForm.telefono, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div class="form-group">
+                    {{form_widget(registerForm.direccion, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div class="form-group">
+                    {{form_widget(registerForm.ciudad, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div class="politicaPrivacidad">
+                    {{form_widget(registerForm.politica)}}
+                    {{form_label(registerForm.politica)}}
+                    <a href="{{path("politica")}}" style="color: #f9a519;">política de privacidad</a>
+                  </div>
+                  <button class="btn btn-warning  btn-block" type="submit">Registrarse</button>
+                  <p class="login-card-footer-text">Victor6993  | &copy; Maleteo 2020</p>
+                {{form_end(registerForm)}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+{% endblock %}

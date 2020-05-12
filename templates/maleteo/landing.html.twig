@@ -1,0 +1,155 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+  {{parent()}}
+  <link href="{{asset('css/styles.css')}}" rel="stylesheet">
+  <link href="{{asset('css/carousel.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <section class="jumbotron">
+      <article class="stores">
+        <p class="store-message">Gana dinero guardando equipaje a viajeros como tú !</p>
+        <div class="store-logos">
+          <picture><img src="assets/img/app-store.svg" alt="descarga-appStore" class="desc-1"></picture>
+          <picture><img src="assets/img/google-play.svg" alt="descarga-googlePlay" class="desc-2"></picture>
+        </div>
+      </article>
+    </section>
+    <section class="como-funciona">
+      <div class="pasos-titulo"><p>¿Cómo funciona?</p></div>
+      <article class="pasos">
+        <div class="paso">
+            <div class="paso-circulo">1</div>
+            <div class="paso-titulo">Date de alta</div>
+            <div class="paso-texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem excepturi nostrum voluptatibus perferendis cupiditate omnis, tenetur officiis quisquam aliquid ipsum, aliquam vel quia dignissimos. Nobis ab consequatur omnis quis expedita.</div>
+          </div>
+        <div class="paso">
+            <div class="paso-circulo">2</div>
+            <div class="paso-titulo">Date de alta</div>
+            <div class="paso-texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem excepturi nostrum voluptatibus perferendis cupiditate omnis, tenetur officiis quisquam aliquid ipsum, aliquam vel quia dignissimos. Nobis ab consequatur omnis quis expedita.</div>
+          </div>
+        <div class="paso">
+            <div class="paso-circulo">3</div>
+            <div class="paso-titulo">Date de alta</div>
+            <div class="paso-texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem excepturi nostrum voluptatibus perferendis cupiditate omnis, tenetur officiis quisquam aliquid ipsum, aliquam vel quia dignissimos. Nobis ab consequatur omnis quis expedita.</div>
+          </div>
+        </article>
+    </section>
+    <section class="contacto">
+      <picture class="contacto-foto col-3">
+        <img src="assets/img/iPhoneX@2x.png" class="imagen-lateral">
+      </picture>  
+
+      <div class="card " style="width: 30rem; height: 30rem">
+        <div class="card-body">
+          <h4 class="card-title text-center">Solicita una demo</h4>
+
+              <div class="card-body card-content">
+                {{form_start(userForm, {'attr': {'class': 'formulario noappearance'}}) }}
+
+                  <div class="form-group">
+                    {{form_label(userForm.nombre)}}
+                    {{form_widget(userForm.nombre, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div class="form-group mb-4">
+                    {{form_label(userForm.email)}}
+                    {{form_widget(userForm.email, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div class="form-group mb-4">
+                   {{form_label(userForm.ciudad)}}
+                    {{form_widget(userForm.ciudad, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div class="politicaPrivacidad">
+                    {{form_widget(userForm.politica)}}
+                    {{form_label(userForm.politica)}}
+                    <a href="{{path("politica")}}">política de privacidad</a>
+                  </div>
+                  <button class="btn login-btn btn-warning btn-block" type="submit">Enviar</button>
+
+        <div class="campo-formulario text-center">
+          {# {% for message in app.flashes('success') %}
+            <h2 class="msgDemo">{{message}}</h2>
+          {% endfor %} #}
+          {% for message in app.flashes('error') %}
+            <h2 class="msgDemo">{{message}}</h2>
+          {% endfor %}
+         
+        {{ form_end(userForm) }}
+
+        </div>
+      </div>
+
+        
+
+    </section>
+
+    <section class="opiniones-guardianes">
+      {# <div class="opiniones-titulo"><p>Opiniones de otros guardianes</p></div>
+      <article class="opiniones">
+        {% for opinion in opiniones %}
+          <div class="opinion">
+            <div class="opinion-texto">
+              {{opinion.comentario}}
+            </div>
+          <div class="opinion-autor">{{opinion.autor}}</div>
+          <div class="opinion-lugar">{{opinion.ciudad}}</div>
+        </div>
+        {% endfor %}
+        </article> #}
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          {# {% for opinion in opiniones %} #}
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <p><span class="comillas"></span>{{opinion1.comentario}}<span class="comillas"></p>
+                <h3>{{opinion1.autor}}</h3>
+                <h4>{{opinion1.ciudad}}</h4>
+              </div>
+            </div>
+          </div>
+          {# {% endfor %} #}
+          <div class="carousel-item">
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <p><span class="comillas"></span>{{opinion2.comentario}}<span class="comillas"></p>
+                <h3>{{opinion2.autor}}</h3>
+                <h4>{{opinion2.ciudad}}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <p><span class="comillas"></span>{{opinion3.comentario}}<span class="comillas"></p>
+                <h3>{{opinion3.autor}}</h3>
+                <h4>{{opinion3.ciudad}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+
+    </section>
+
+
+    
+{% endblock %}
+

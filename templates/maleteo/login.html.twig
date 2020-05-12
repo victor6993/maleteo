@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+  {{parent()}}
+  <link href="{{asset('css/signin.css')}}" rel="stylesheet">
+{% endblock %}
+    
+{% block body %}
+<div class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+      <div class="container">
+        <div class="card login-card">
+          <div class="row no-gutters">
+            <div class="col-md-5">
+              <img src="assets/img/jumbo@1x.png" alt="login" class="login-card-img" />
+            </div>
+            <div class="col-md-7">
+              <div class="card-body card-content">
+                <div class="brand-wrapper">
+                  <img src="assets/img/logo.svg" alt="logo" class="logo" />
+                </div>
+                <p class="login-card-description">Identifícate</p>
+                {{form_start(loginForm, {'attr': {'class': 'formulario noappearance'}}) }}
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                  <div class="form-group">
+                    {{form_widget(loginForm.username, {'attr': {'class': 'form-control', 'value': last_username } })}}
+                  </div>
+                   <div class="form-group mb-4">
+                    {{form_widget(loginForm.password, {'attr': {'class': 'form-control'}})}}
+                  </div>
+                  <div>
+                    {{form_widget(loginForm.recordarme, {'attr': {'name': '_remember_me'}})}}
+                    {{form_label(loginForm.recordarme)}}
+                  </div>
+
+                  <input type="hidden" name="_csrf_token"
+                  value="{{ csrf_token('authenticate') }}">
+
+                  <button class="btn btn-warning btn-block btn-acceder" type="submit">Acceder</button>
+                  <p class="sinCuenta">¿No tienes cuenta? <a href="{{path('register')}}">Regístrate!</a></p>
+                  <p class="login-card-footer-text">Victor6993  | &copy; Maleteo 2020</p>                
+                {{form_end(loginForm)}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+{% endblock %}

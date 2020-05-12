@@ -7,7 +7,7 @@ services:
             - ./db-data:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=rootpass
-            - MYSQL_DATABASE=demo
+            - MYSQL_DATABASE=maleteo
             - MYSQL_USER=user
             - MYSQL_PASSWORD=pass
         ports:
@@ -25,7 +25,7 @@ services:
         build: 
             context: phpdocker/php-fpm
             args:
-                user: kiko
+                user: victor
                 uid: 1000
         working_dir: /application
         volumes:
