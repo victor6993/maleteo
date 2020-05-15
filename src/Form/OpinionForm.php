@@ -12,7 +12,7 @@ class OpinionForm extends AbstractType {
 
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('comentario', TextareaType::class, [ 'attr' => ['placeholder' => 'Me encanta Maleteo, es simplemente genial!','label'=> 'Introduzca su comentario']]);
+    $builder->add('comentario', TextareaType::class, [ 'attr' => ['placeholder' => 'Me encanta Maleteo, es simplemente genial!   (Máximo 150 caracteres!)','label'=> 'Introduzca su comentario', 'maxLength' => 150]]);
     $builder->add('autor', TextType::class, [ 'attr' => ['placeholder' => 'Nombre y apellidos', 'label'=> 'Autor']]);
     $builder->add('ciudad', TextType::class, [ 'attr' => ['label'=> 'Ciudad']]);
     $builder->add('ciudad', ChoiceType::class, [

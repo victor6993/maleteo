@@ -64,7 +64,7 @@ class DefaultController extends AbstractController
     $form->handleRequest($request);
 
     $datos = json_decode($request->getContent(), true);
-    // dd($datos);
+
     try{
       $usuarioDemo = new UsuarioDemo();
       $usuarioDemo->setNombre($datos['nombre']);

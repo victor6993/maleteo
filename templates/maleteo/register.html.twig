@@ -17,16 +17,12 @@
             </div>
             <div class="col-md-7">
               <div class="card-body card-content">
-                {# <div class="brand-wrapper">
+                <div class="brand-wrapper text-center">
                   <img src="assets/img/logo.svg" alt="logo" class="logo" />
-                </div> #}
+                </div>
                 <p class="login-card-description text-center">Únete a la comunidad</p>
                 {{form_start(registerForm, {'attr': {'class': 'formulario noappearance'}}) }}
                 {% for message in app.session.flashbag.get('error') %}
-                  {# <div class="form-control isa_error ">
-                    <i class="fa fa-times-circle"></i>
-                    <h5 class="msgFa">{{message}}</h5>
-                  </div> #}
                   <div class="alert alert-danger"><i class="fa fa-times-circle"></i> {{message}}</div>
                 {% endfor %}
                   <div class="form-group">

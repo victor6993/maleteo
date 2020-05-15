@@ -21,7 +21,9 @@ formDemo.addEventListener("submit", function (e) {
     .then(content => {
 
       mensajeBox.style.display = "inline-block";
+      mensajeBox.classList.remove("alert-danger");
       mensajeBox.classList.add("alert-success");
+      iconoMsg.classList.remove("fa-times-circle");
       iconoMsg.classList.add("fa-check");
       spanBox.innerHTML = content.msg;
       formDemo.reset();
@@ -29,7 +31,9 @@ formDemo.addEventListener("submit", function (e) {
     })
     .catch( () => {
       mensajeBox.style.display = "inline-block";
+      mensajeBox.classList.remove("alert-success");
       mensajeBox.classList.add("alert-danger");
+      iconoMsg.classList.remove("fa-success");
       iconoMsg.classList.add("fa-times-circle");
       spanBox.innerHTML = "Ha ocurrido un error! Inténtelo de nuevo";
     });
