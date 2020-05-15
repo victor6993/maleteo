@@ -36,8 +36,8 @@
                     {{form_widget(loginForm.password, {'attr': {'class': 'form-control'}})}}
                   </div>
                   <div>
-                    {{form_widget(loginForm.recordarme, {'attr': {'name': '_remember_me'}})}}
-                    {{form_label(loginForm.recordarme)}}
+                    <input type="checkbox" id="remember_me" name="_remember_me" />
+                    <label for="remember_me">Recordarme</label>
                   </div>
 
                   <input type="hidden" name="_csrf_token"

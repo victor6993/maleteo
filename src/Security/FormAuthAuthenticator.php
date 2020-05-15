@@ -47,9 +47,10 @@ class FormAuthAuthenticator extends AbstractFormLoginAuthenticator implements Pa
 
     public function getCredentials(Request $request)
     {
+       
         $credentials = [
-            'username' => $request->request->get('username'),
-            'password' => $request->request->get('password'),
+            'username' => $request->request->get('login_form')['username'],
+            'password' => $request->request->get('login_form')['password'],
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
         $request->getSession()->set(
@@ -73,7 +74,6 @@ class FormAuthAuthenticator extends AbstractFormLoginAuthenticator implements Pa
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Usuario no encontrado');
         }
-
         return $user;
     }
 
@@ -92,9 +92,9 @@ class FormAuthAuthenticator extends AbstractFormLoginAuthenticator implements Pa
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        // if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-        //     return new RedirectResponse($targetPath);
-        // }
+        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+            return new RedirectResponse($targetPath);
+        }
 
         return new RedirectResponse($this->urlGenerator->generate('landing'));
        

@@ -13,20 +13,20 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Email</th>
+        <th scope="col">Autor</th>
         <th scope="col">Ciudad</th>
+        <th scope="col">Comentario</th>
       </tr>
     </thead>
     <tbody>
-  {% for solicitud in solicitudes %}
+  {% for opinion in opiniones %}
       <tr>
-        <th scope="row">{{solicitud.id}}</th>
-        <td>{{solicitud.nombre}}</td>
-        <td>{{solicitud.email}}</td>
-        <td>{{solicitud.ciudad}}</td>
+        <th scope="row">{{opinion.id}}</th>
+        <td>{{opinion.autor}}</td>
+        <td>{{opinion.ciudad}}</td>
+        <td>{{opinion.comentario}}</td>
         <td>
-        <a href="{{path("borrarSolicitud", {id: solicitud.id})}}" style="color:yellow:"><i class="fas fa-trash-alt fa-1x"></i></a>
+        <a href="{{path("borrarOpinion", {id: opinion.id})}}" style="color:yellow:"><i class="fas fa-trash-alt fa-1x"></i></a>
         </td>
       </tr>
   {% endfor %}

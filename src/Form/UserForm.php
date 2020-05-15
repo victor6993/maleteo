@@ -15,15 +15,15 @@ class UserForm extends AbstractType {
 
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('nombre', TextType::class, [ 'attr' => ['placeholder' => 'Nombre y apellidos', 'label'=> 'Nombre']]);
-    $builder->add('email', EmailType::class, [ 'attr' => ['placeholder' => 'Dirección de email', 'label'=> 'Email']]);
+    $builder->add('nombre', TextType::class, [ 'attr' => ['placeholder' => 'Nombre y apellidos', 'label'=> 'Nombre', 'required' => true,]]);
+    $builder->add('email', EmailType::class, [ 'attr' => ['placeholder' => 'Dirección de email', 'label'=> 'Email', 'required' => true,]]);
     $builder->add('ciudad', ChoiceType::class, [
       'choices' => [
-      'Madrid' => 'madrid',
-      'Barcelona' => 'barcelona',
-      'Sevilla' => 'sevilla'
+      'Madrid' => 'Madrid',
+      'Barcelona' => 'Barcelona',
+      'Sevilla' => 'Sevilla'
       ],
-      'placeholder' => 'Elige tu ciudad', 'label'=> 'Ciudad'
+      'placeholder' => 'Elige tu ciudad', 'label'=> 'Ciudad', 'required' => true,
       ]);
       $builder->add('politica', CheckboxType::class, [
         'label'    => 'Acepto la ',
