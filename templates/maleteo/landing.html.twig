@@ -2,8 +2,8 @@
 
 {% block stylesheets %}
   {{parent()}}
-  <link href="{{asset('css/styles.css')}}" rel="stylesheet">
   <link href="{{asset('css/carousel.css')}}" rel="stylesheet">
+  <link href="{{asset('css/styles.css')}}" rel="stylesheet">
   <link href="{{asset('css/msgs.css')}}" rel="stylesheet">
 {% endblock %}
 
@@ -49,19 +49,16 @@
               
               {# {% for message in app.flashes('success') %} #}
               {% for message in app.session.flashbag.get('success') %}
-                 <div class="isa_success">
-                  <i class="fa fa-check"></i>
-                  <h5 style="display: inline">{{message}}</h5>
-                  </div>
+                 <div class="alert alert-success"><i class="fa fa-check"></i> {{message}}</div>
                {% endfor %}
               {# {% for message in app.flashes('error') %} #}
-              {% for message in app.session.flashbag.get('error') %}
+              {# {% for message in app.session.flashbag.get('error') %}
 
               <div class="isa_error">
               <i class="fa fa-times-circle"></i>
             <h5 >{{message}}</h5>
             </div>
-          {% endfor %}
+          {% endfor %} #}
 
             {# <div class="isa_info">
               <i class="fa fa-info-circle"></i>
@@ -74,6 +71,7 @@
             </div> #}
 
                 {{form_start(userForm, {'action': path("new-demo"), 'attr': {'class': 'formulario noappearance', 'id': 'form-demo'}}) }}
+                <div class="alert  text-center" id="msgDemo" ><i class="fa " id="icono-msg"></i> <span id="panMsg"></span></div>
 
                   <div class="form-group">
                     {{form_label(userForm.nombre)}}
@@ -92,7 +90,7 @@
                     {{form_label(userForm.politica)}} 
                     <a href="{{path("politica")}}">política de privacidad</a>
                   </div>
-                  <button class="btn login-btn btn-warning btn-block form-btn" type="submit">Enviar</button>
+                  <button class="btn login-btn btn-warning btn-block form-btn btn-acceder-reg" type="submit">Enviar</button>
                 {{form_end(userForm)}}
 
               </div>
@@ -177,7 +175,7 @@
     
 {% endblock %}
 
-{% block javascript %}
+{% block javascripts %}
   {{parent()}}
   <script src="{{asset("js/landingScript.js")}}"></script>
 {% endblock %}

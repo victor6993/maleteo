@@ -64,7 +64,7 @@ class DefaultController extends AbstractController
     $form->handleRequest($request);
 
     $datos = json_decode($request->getContent(), true);
-
+    // dd($datos);
     try{
       $usuarioDemo = new UsuarioDemo();
       $usuarioDemo->setNombre($datos['nombre']);
@@ -74,7 +74,7 @@ class DefaultController extends AbstractController
       $em->persist($usuarioDemo);
       $em->flush();
 
-      $this->addFlash('success', 'Solicitud enviada');
+      $this->addFlash('success', 'Solicitud enviada correctamente');
       $logger->info("Un usuario ha solicitado una demo");
           
     } catch(\Exception $e) {
@@ -83,7 +83,7 @@ class DefaultController extends AbstractController
       $this->addFlash('error', 'Error al enviar, vuelva a intentarlo');
     }
 
-    return new JsonResponse(['msg'=> 'Guardado correctamente']);
+    return new JsonResponse(['msg'=> 'Solicitud enviada correctamente!']);
 
   }
 

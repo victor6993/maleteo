@@ -38,3 +38,9 @@ text-align: left;
     margin: 0;
     line-height: 0;
 }
+
+#msgDemo {
+    margin-bottom: 5px;
+    width: 100%;
+    display: none;
+}
