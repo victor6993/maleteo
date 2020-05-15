@@ -79,6 +79,10 @@ class FormAuthAuthenticator extends AbstractFormLoginAuthenticator implements Pa
 
     public function checkCredentials($credentials, UserInterface $user)
     {
+        if(!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
+            throw new CustomUserMessageAuthenticationException('Contraseña incorrecta');
+        }
+
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 

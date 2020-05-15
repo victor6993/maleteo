@@ -64,24 +64,24 @@ class DefaultController extends AbstractController
     $form->handleRequest($request);
 
     $datos = json_decode($request->getContent(), true);
-    
+
     try{
-        $usuarioDemo = new UsuarioDemo();
-        $usuarioDemo->setNombre($datos['nombre']);
-        $usuarioDemo->setEmail($datos['email']);
-        $usuarioDemo->setCiudad($datos['ciudad']);
+      $usuarioDemo = new UsuarioDemo();
+      $usuarioDemo->setNombre($datos['nombre']);
+      $usuarioDemo->setEmail($datos['email']);
+      $usuarioDemo->setCiudad($datos['ciudad']);
 
-        $em->persist($usuarioDemo);
-        $em->flush();
+      $em->persist($usuarioDemo);
+      $em->flush();
 
-        $this->addFlash('success', 'Enviado correctamente');
-        $logger->info("Un usuario ha solicitado una demo");
+      $this->addFlash('success', 'Solicitud enviada');
+      $logger->info("Un usuario ha solicitado una demo");
           
     } catch(\Exception $e) {
           
-          $logger->error("Error en el envío de datos:: $e");
-          $this->addFlash('error', 'Error al enviar los datos, vuelva a intentarlo');
-        }
+      $logger->error("Error en el envío de datos:: $e");
+      $this->addFlash('error', 'Error al enviar, vuelva a intentarlo');
+    }
 
     return new JsonResponse(['msg'=> 'Guardado correctamente']);
 
@@ -161,7 +161,8 @@ class DefaultController extends AbstractController
     $em->remove($opinion);
     $em->flush();
 
-    return new RedirectResponse('/listaOpiniones');
+    // return new RedirectResponse('/listaOpiniones');
+    return $this->redirectToRoute('listaOpiniones');
   }
 
   
@@ -184,17 +185,17 @@ class DefaultController extends AbstractController
         $em->persist($registroUsuario);
         $em->flush($registroUsuario);
         
-        $this->addFlash('success', 'Enviado correctamente');
-        $logger->info("Un usuario ha solicitado una demo");
+        // $this->addFlash('success', 'Enviado correctamente');
+        $logger->info("Un usuario se ha registrado");
 
         return $guard->authenticateUserAndHandleSuccess($registroUsuario, $request, $formAuthenticator, 'main');
         
       } catch(\Exception $e) {
         
-        $logger->error("Error en el envío de datos:: $e");
-        $this->addFlash('error', 'Error al enviar los datos, vuelva a intentarlo');
+        $logger->error("Error en el registro:: $e");
+        $this->addFlash('error', 'El usuario ya existe!');
       }
-      return $this->redirectToRoute('landing');
+      return $this->redirectToRoute('register');
     }
 
     return $this->render("maleteo/register.html.twig", ['registerForm' => $form->createView()]);

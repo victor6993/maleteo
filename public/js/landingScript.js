@@ -5,32 +5,26 @@ let icono = document.createElement('i');
 icono.classList.add("fa", "fa-check");
 let mensaje = document.createElement('h4');
 mensaje.style.display = "inline";
-
-let demoBox = document.getElementById("demo-box");
-let div = demoBox.parentNode;
 msgBox.appendChild(icono);
 msgBox.appendChild(mensaje);
+
+let demoBox = document.getElementById("demo-box");
+demoBox.appendChild(msgBox);
+
 // let contacto = document.querySelector(".contacto");
 // div.insertBefore(msgBox,demoBox);
-demoBox.appendChild(msgBox);
+
 let formDemo = document.getElementById("form-demo"); 
 
 // contacto.appendChild(msgBox);
 
-document.querySelector(".form-btn")
-.addEventListener("click", function (e) {
+formDemo.addEventListener("submit", function (e) {
   
-  let nombre = document.getElementById("user_form_nombre");
-  let email = document.getElementById("user_form_email");
-  let ciudad = document.getElementById("user_form_ciudad");
   let data = {
-    nombre: nombre.value,
-    email: email.value,
-    ciudad: ciudad.value,
-  }  
-  
-  if(data.nombre !== "" && data.email !== "" && data.ciudad !== "") {
-    console.log(data);
+    nombre: document.getElementById("user_form_nombre").value,
+    email: document.getElementById("user_form_email").value,
+    ciudad: document.getElementById("user_form_ciudad").value,
+  } 
     
     fetch("/newDemo", {
       method: "POST",
@@ -46,8 +40,8 @@ document.querySelector(".form-btn")
       
     }
     );
-  }
-  
-  e.preventDefault();
-
+    
+    e.preventDefault();
+    
 });
+  

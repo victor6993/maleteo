@@ -7,13 +7,6 @@
   font-family: Catamaran, sans-serif;
 }
 
-/* header {
-height: 20vh;
-display: flex;
-align-items: center;
-justify-content: flex-start;
-} */
-
 .logo-header {
   padding-left: 10vw;
 }
@@ -179,11 +172,6 @@ justify-content: flex-start;
   color: #f9a519;
 }
 
-.msgDemo {
-  text-align: center;
-  color: red;
-}
-
 .campo-formulario button {
   font-size: 20px;
   padding: 3px;
@@ -193,7 +181,7 @@ justify-content: flex-start;
   border-radius: 5px;
 }
 
-.btn-acceder {
+.btn-acceder-reg {
   margin: 5px 0 10px;
 }
 
@@ -232,7 +220,7 @@ footer {
   flex-direction: column;
 }
 
-.min-vh-100 {
+/* .min-vh-100 {
   min-height: 80vh!important;
 }
 
@@ -242,7 +230,7 @@ footer {
 
 .body-register {
   height: 90vh!important;
-}
+} */
 
 .heart {
   color: red !important;

@@ -20,8 +20,8 @@ class RegisterForm extends AbstractType {
     $builder->add('password', PasswordType::class, [ 'attr' => ['placeholder' => 'Contraseña', 'required' => true]]);
     $builder->add('nombre', TextType::class, [ 'attr' => ['placeholder' => 'Nombre y apellidos', 'required' => true]]);
     $builder->add('email', EmailType::class, [ 'attr' => ['placeholder' => 'Dirección de email', 'required' => true]]);
-    $builder->add('telefono', TextType::class, ['attr' => ['placeholder' => 'Teléfono (opcional)']]);
-    $builder->add('direccion', TextType::class, ['attr' => ['placeholder' => 'Dirección (opcional)']]);
+    $builder->add('telefono', TextType::class, ['attr' => ['placeholder' => 'Teléfono (opcional)', 'required' => false]]);
+    $builder->add('direccion', TextType::class, ['attr' => ['placeholder' => 'Dirección (opcional)', 'required' => false]]);
     $builder->add('ciudad', ChoiceType::class, [
       'choices' => [
       'Madrid' => 'Madrid',

@@ -26,11 +26,16 @@
         <td>{{opinion.ciudad}}</td>
         <td>{{opinion.comentario}}</td>
         <td>
-        <a href="{{path("borrarOpinion", {id: opinion.id})}}" style="color:yellow:"><i class="fas fa-trash-alt fa-1x"></i></a>
+        <a href="{{path("borrarOpinion", {id: opinion.id})}}" ><i class="fas fa-trash-alt fa-1x" style="color:#f9a519;"></i></a>
         </td>
       </tr>
   {% endfor %}
     </tbody>
   </table>
 </div> 
+{% endblock %}
+
+{% block javascript %}
+  {{parent()}}
+  <script src="{{asset("js/listaOpScript.js")}}"></script>
 {% endblock %}

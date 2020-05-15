@@ -3,6 +3,7 @@
 {% block stylesheets %}
   {{parent()}}
   <link href="{{asset('css/signin.css')}}" rel="stylesheet">
+  <link href="{{asset('css/msgs.css')}}" rel="stylesheet">
 {% endblock %}
     
 {% block body %}
@@ -15,13 +16,14 @@
             </div>
             <div class="col-md-7">
               <div class="card-body card-content">
-                <div class="brand-wrapper">
+                <div class="brand-wrapper text-center">
                   <img src="assets/img/logo.svg" alt="logo" class="logo" />
                 </div>
-                <p class="login-card-description">Identifícate</p>
+                <p class="login-card-description text-center">Identifícate</p>
                 {{form_start(loginForm, {'attr': {'class': 'formulario noappearance'}}) }}
                 {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {# <div class="alert alert-danger">Contraseña incorrecta</div> #}
+                    <div class="alert alert-danger"><i class="fa fa-times-circle"></i> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
                 {% if app.user %}
@@ -43,8 +45,8 @@
                   <input type="hidden" name="_csrf_token"
                   value="{{ csrf_token('authenticate') }}">
 
-                  <button class="btn btn-warning btn-block btn-acceder" type="submit">Acceder</button>
-                  <p class="sinCuenta">¿No tienes cuenta? <a href="{{path('register')}}">Regístrate!</a></p>
+                  <button class="btn btn-warning btn-block btn-acceder-reg" type="submit">Acceder</button>
+                  <p class="sinCuenta text-center">¿No tienes cuenta? <a href="{{path('register')}}">Regístrate!</a></p>
                   <p class="login-card-footer-text">Victor6993  | &copy; Maleteo 2020</p>                
                 {{form_end(loginForm)}}
               </div>
