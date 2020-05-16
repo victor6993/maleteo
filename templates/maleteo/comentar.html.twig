@@ -9,36 +9,6 @@
 
 {% block body %}
 
-    {# <section class="contacto">
-
-      {{ form_start(opinionForm, {'attr': {'class': 'contacto-formulario'}}) }}
-        <div class="campo-formulario">
-          <p class="titulo-medio">Tu opinión importa!</p>
-
-        </div>
-        <div class="campo-formulario">
-          {{form_label(opinionForm.autor)}}
-          {{form_widget(opinionForm.autor)}}
-        <div class="form-group">
-          {{form_label(opinionForm.comentario)}}
-          {{form_widget(opinionForm.comentario, {'attr': {'class': 'form-control', 'rows': '5'}})}}
-        </div>
-          {{form_label(opinionForm.ciudad)}}
-          {{form_widget(opinionForm.ciudad)}}
-        </div>
-        <div class="campo-formulario ">
-          <button>ENVIAR</button>
-        </div>
-        <div class="campo-formulario text-center">
-          {% for message in app.flashes('error') %}
-            <h2 class="msgDemo">{{message}}</h2>
-          {% endfor %}
-        </div>
-         
-    {{ form_end(opinionForm) }}
-
-    </section> #}
-
     <div class="d-flex align-items-center min-vh-100 py-3 py-md-0">
       <div class="container">
         <div class="card login-card coment-card">
@@ -56,7 +26,7 @@
                   </div>
                    <div class="form-group mb-4">
                     {{form_label(opinionForm.comentario)}}
-                    {{form_widget(opinionForm.comentario, {'attr': {'class': 'form-control', 'rows': '1'}})}}
+                    {{form_widget(opinionForm.comentario, {'attr': {'class': 'form-control', 'rows': '3'}})}}
                   </div>
                    <div class="form-group mb-4">
                     {{form_label(opinionForm.ciudad)}}

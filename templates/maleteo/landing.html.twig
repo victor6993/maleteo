@@ -3,8 +3,8 @@
 {% block stylesheets %}
   {{parent()}}
   <link href="{{asset('css/carousel.css')}}" rel="stylesheet">
-  <link href="{{asset('css/styles.css')}}" rel="stylesheet">
   <link href="{{asset('css/msgs.css')}}" rel="stylesheet">
+  {# <link href="{{asset('css/styles.css')}}" rel="stylesheet"> #}
 {% endblock %}
 
 {% block body %}
@@ -18,7 +18,9 @@
         </div>
       </article>
     </section>
-    <section class="como-funciona">
+
+
+    {# <section class="como-funciona">
       <div class="pasos-titulo"><p>¿Cómo funciona?</p></div>
       <article class="pasos">
         <div class="paso">
@@ -37,7 +39,43 @@
             <div class="paso-texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem excepturi nostrum voluptatibus perferendis cupiditate omnis, tenetur officiis quisquam aliquid ipsum, aliquam vel quia dignissimos. Nobis ab consequatur omnis quis expedita.</div>
           </div>
         </article>
+    </section> #}
+
+    <section class="white-section" id="features">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="feature-box col-lg-4">
+            {# <i class="icon fas fa-check-circle fa-4x"></i> #}
+            {# <i class="icon fas fa-address-card fa-4x"></i> #}
+            <img src="{{asset("assets/img/idCard.svg")}}" style="color: yellow;" alt="">
+            <h3 class="feature-title">Easy to use.</h3>
+            <p>So easy to use, even your dog could do it.</p>
+          </div>
+
+          <div class="feature-box col-lg-4">
+          {# <i class="fas fa-hand-holding-usd"></i> #}
+          <img src="{{asset("assets/img/comment.svg")}}" alt="">
+            {# <i class="icon fas fa-bullseye fa-4x"></i> #}
+            {# <i class="icon fas fa-comment-dots fa-4x"></i> #}
+            {# <i class="icon fas fa-comments-dollar fa-4x"></i> #}
+            {# <i class="icon fas fa-luggage-cart fa-4x"></i> #}
+            {# <i class="fas fa-hand-holding-heart"></i> #}
+            {# <i class="icon fas fa-address-card fa-4x"></i> #}
+            <h3 class="feature-title">Elite Clientele</h3>
+            <p>We have all the dogs, the greatest dogs.</p>
+          </div>
+
+          <div class="feature-box col-lg-4">
+            {# <i class="icon fas fa-heart fa-4x"></i> #}
+            {# <i class="icon fas fa-business-time fa-4x"></i> #}
+            <img src="{{asset("assets/img/mano-dolar.svg")}}" alt="">
+            <h3 class="feature-title">Guaranteed to work.</h3>
+            <p>Find the love of your dog's life or your money back.</p>
+          </div>
+        </div>
+      </div>
     </section>
+
 
     <section >
     <div id="myCarousel" class="carousel slide colored-section" data-ride="carousel">

@@ -220,7 +220,7 @@
 } */
 
 footer {
-  height: 10vh;
+  height: auto;
   background-color: rgb(64, 74, 83);
   font-size: 20px;
   color: #fff;
@@ -248,7 +248,15 @@ footer {
 
 .coment-form {
   max-width: 90% !important;
+  line-height: 2 !important;
 }
+
+.btnBorrar , .btnEdit {
+  color:#f9a519; 
+  cursor: pointer;
+  filter: contrast(10%) sepia(1) hue-rotate(14deg) saturate(3000%)
+}
+
 
 /* .min-vh-100 {
   min-height: 80vh!important;

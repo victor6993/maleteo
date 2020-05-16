@@ -103,11 +103,11 @@ class DefaultController extends AbstractController
    * @Route("/solicitudes/{id}/borrar" , name = "borrarSolicitud")
    * @IsGranted("ROLE_ADMIN")
    */
-  public function borrarSolicitud(UsuarioDemo $solicitudesDemo, EntityManagerInterface $em) {
+  public function borrarSolicitud(UsuarioDemo $solicitudesDemo, EntityManagerInterface $em, $id) {
     $em->remove($solicitudesDemo);
     $em->flush();
 
-    return new RedirectResponse('/solicitudes');
+    return new JsonResponse(['msg', "Se ha borrado el comentario #$id correctamente"]);
   }
 
   /**
@@ -135,7 +135,8 @@ class DefaultController extends AbstractController
       } catch(\Exception $e) {
         $logger->error("Error en el envío de datos:: $e");
       }
-      return $this->redirectToRoute('landing');
+      // return $this->redirectToRoute('landing');
+      return $this->redirectToRoute('comentar');
     }
 
     return $this->render("maleteo/comentar.html.twig", ['opinionForm' => $form->createView()]);
@@ -154,16 +155,32 @@ class DefaultController extends AbstractController
   }
 
     /**
-   * @Route("/opiniones/{id}/borrar" , name = "borrarOpinion")
+   * @Route("/opiniones/{id}/borrar" , methods = {"POST"}, name = "borrarOpinion")
    * @IsGranted("ROLE_ADMIN")
    */
-  public function borrarOpinion(Opinion $opinion, EntityManagerInterface $em) {
+  public function borrarOpinion(Opinion $opinion, EntityManagerInterface $em, $id) {
+
+    // $datos = json_decode($request->getContent(), true);
+    // dd($datos);
+    // $em->remove($opinion);
     $em->remove($opinion);
     $em->flush();
 
     // return new RedirectResponse('/listaOpiniones');
-    return $this->redirectToRoute('listaOpiniones');
+    // return $this->redirectToRoute('listaOpiniones');
+    return new JsonResponse(['msg', "Se ha borrado el comentario #$id correctamente"]);
   }
+  //   /**
+  //  * @Route("/opiniones/{id}/borrar" , name = "borrarOpinion")
+  //  * @IsGranted("ROLE_ADMIN")
+  //  */
+  // public function borrarOpinion(Opinion $opinion, EntityManagerInterface $em) {
+  //   $em->remove($opinion);
+  //   $em->flush();
+
+  //   // return new RedirectResponse('/listaOpiniones');
+  //   return $this->redirectToRoute('listaOpiniones');
+  // }
 
   
   /**

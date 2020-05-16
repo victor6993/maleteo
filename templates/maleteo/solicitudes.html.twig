@@ -25,12 +25,40 @@
         <td>{{solicitud.nombre}}</td>
         <td>{{solicitud.email}}</td>
         <td>{{solicitud.ciudad}}</td>
+        <td>  
+          <img class="btnEdit" id="{{solicitud.id}}" src="{{asset("assets/img/edit.png")}}" alt="boton-editar">
+        </td>
         <td>
-        <a href="{{path("borrarSolicitud", {id: solicitud.id})}}" style="color:yellow:"><i class="fas fa-trash-alt fa-1x"></i></a>
+          <img class="btnBorrar" data-toggle="modal" data-target="#exampleModalCenter" id="{{solicitud.id}}" src="{{asset("assets/img/basura.png")}}" alt="boton-borrado">
         </td>
       </tr>
   {% endfor %}
     </tbody>
   </table>
 </div> 
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Recordatorio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Una vez borrada la solicitud no se podrá volver a recuperar. ¿Desea continuar de todas formas?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelar">Cancelar</button>
+        <button type="button" data-dismiss="modal" class="btn btn-warning" id="btnAceptar">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{asset("js/solicitudesScript.js")}}"></script>
 {% endblock %}

@@ -19,7 +19,7 @@ for(let i = 0; i < btnBorrar.length; i++) {
 
     borrar((confirm) => {
       if(confirm) {
-        fetch(`/opiniones/${id}/borrar`, {
+        fetch(`/solicitudes/${id}/borrar`, {
           method: "POST",
           body: JSON.stringify(id)
         })
