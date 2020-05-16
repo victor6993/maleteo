@@ -22,7 +22,6 @@
                 <p class="login-card-description text-center">Identifícate</p>
                 {{form_start(loginForm, {'attr': {'class': 'formulario noappearance'}}) }}
                 {% if error %}
-                    {# <div class="alert alert-danger">Contraseña incorrecta</div> #}
                     <div class="alert alert-danger"><i class="fa fa-times-circle"></i> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 

@@ -39,16 +39,8 @@
         </article>
     </section>
 
-      <section >
-    {# <section class="opiniones-guardianes"> #}
-
+    <section >
     <div id="myCarousel" class="carousel slide colored-section" data-ride="carousel">
-     {# <div class="pasos-titulo"><h1>Opiniones de nuestros usuarios</h1></div> #}
-        {# <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol> #}
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="container-fluid">
@@ -58,7 +50,7 @@
                 {{opinion1.comentario}}
                 <span class="comillas">”</span>
                 </h2>
-                <img class="testimonial-image" src="{{asset("assets/img/dog-img.jpg")}}" alt="someones-profile" />
+                <img class="opinion-img" src="{{asset("assets/img/dog-img.jpg")}}" alt="someones-profile" />
                 <em>{{opinion1.autor}}, {{opinion1.ciudad}}</em>
               </div>
             </div>
@@ -71,7 +63,7 @@
                 {{opinion2.comentario}}
                 <span class="comillas">”</span>
                 </h2>
-                <img class="testimonial-image" src="{{asset("assets/img/dog-img.jpg")}}" alt="someones-profile" />
+                <img class="opinion-img" src="{{asset("assets/img/dog-img.jpg")}}" alt="someones-profile" />
                 <em>{{opinion2.autor}}, {{opinion2.ciudad}}</em>
               </div>
             </div>
@@ -84,7 +76,7 @@
                 {{opinion3.comentario}}
                 <span class="comillas">”</span>
                 </h2>
-                <img class="testimonial-image" src="{{asset("assets/img/dog-img.jpg")}}" alt="someones-profile" />
+                <img class="opinion-img" src="{{asset("assets/img/dog-img.jpg")}}" alt="someones-profile" />
                 <em>{{opinion3.autor}}, {{opinion3.ciudad}}</em>
               </div>
             </div>
@@ -100,50 +92,51 @@
         </a>
       </div>
 
-    </section>
-    <section class="colored-section" id="prensa">
+  </section>
+  <section class="colored-section" id="prensa">
       <img class="prensa-logo" src="{{asset("assets/img/TechCrunch.png")}}" alt="tc-logo" />
       <img class="prensa-logo" src="{{asset("assets/img/tnw.png")}}" alt="tnw-logo" />
       <img class="prensa-logo" src="{{asset("assets/img/bizinsider.png")}}" alt="biz-insider-logo" />
       <img class="prensa-logo" src="{{asset("assets/img/mashable.png")}}" alt="mashable-logo" />
-    </section>
+  </section>
 
-    <section class="contacto ">
-      <picture class="contacto-foto col-3">
-        <img src="assets/img/iPhoneX@2x.png" class="imagen-lateral">
-      </picture>  
+  <section class="contacto ">
+  <picture class="contacto-foto col-3">
+    <img src="assets/img/iPhoneX@2x.png" class="imagen-lateral">
+  </picture>  
 
-      <div class="card " style="width: 30rem; height: 30rem">
-        <div class="card-body" id="demo-box">
-          <h4 class="card-title text-center">Solicita una demo</h4>
+  <div class="card " style="width: 30rem; height: 30rem">
+    <div class="card-body" id="demo-box">
+      <h4 class="card-title text-center">Solicita una demo</h4>
 
-                {{form_start(userForm, {'action': path("new-demo"), 'attr': {'class': 'formulario noappearance', 'id': 'form-demo'}}) }}
+    
+      {{form_start(userForm, {'action': path("new-demo"), 'attr': {'class': 'formulario noappearance', 'id': 'form-demo'}}) }}
 
-                <div class="alert  text-center" id="msgDemo" ><i class="fa " id="icono-msg"></i> <span id="panMsg"></span></div>
+        <div class="alert  text-center" id="msgDemo" ><i class="fa " id="icono-msg"></i> <span id="panMsg"></span></div>
 
-                  <div class="form-group">
-                    {{form_label(userForm.nombre)}}
-                    {{form_widget(userForm.nombre, {'attr': {'class': 'form-control'}})}}
-                  </div>
-                  <div class="form-group mb-4">
-                    {{form_label(userForm.email)}}
-                    {{form_widget(userForm.email, {'attr': {'class': 'form-control'}})}}
-                  </div>
-                  <div class="form-group mb-4">
-                   {{form_label(userForm.ciudad)}}
-                    {{form_widget(userForm.ciudad, {'attr': {'class': 'form-control'}})}}
-                  </div>
-                  <div class="politicaPrivacidad">
-                     {{form_widget(userForm.politica)}}
-                    {{form_label(userForm.politica)}} 
-                    <a href="{{path("politica")}}">política de privacidad</a>
-                  </div>
-                  <button class="btn login-btn btn-warning btn-block form-btn btn-acceder-reg" type="submit">Enviar</button>
-                {{form_end(userForm)}}
+        <div class="form-group">
+          {{form_label(userForm.nombre)}}
+          {{form_widget(userForm.nombre, {'attr': {'class': 'form-control'}})}}
+        </div>
+        <div class="form-group mb-4">
+          {{form_label(userForm.email)}}
+          {{form_widget(userForm.email, {'attr': {'class': 'form-control'}})}}
+        </div>
+        <div class="form-group mb-4">
+          {{form_label(userForm.ciudad)}}
+          {{form_widget(userForm.ciudad, {'attr': {'class': 'form-control'}})}}
+        </div>
+        <div class="politicaPrivacidad">
+            {{form_widget(userForm.politica)}}
+          {{form_label(userForm.politica)}} 
+          <a href="{{path("politica")}}">política de privacidad</a>
+        </div>
+        <button class="btn login-btn btn-warning btn-block form-btn btn-acceder-reg" type="submit">Enviar</button>
+      {{form_end(userForm)}}
 
-              </div>
+    </div>
 
-    </section>
+  </section>
 
 
     
