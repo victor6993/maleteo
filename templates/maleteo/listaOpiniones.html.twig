@@ -26,7 +26,7 @@
         <td>{{opinion.ciudad}}</td>
         <td>{{opinion.comentario}}</td>
         <td>  
-        <img class="btnEdit" id="{{opinion.id}}" src="{{asset("assets/img/edit.png")}}" alt="boton-editar">
+        <img class="btnEdit" data-toggle="modal" data-target="#editarOpinion" id="{{opinion.id}}" src="{{asset("assets/img/edit.png")}}" alt="boton-editar">
         </td>
         <td>
         <img class="btnBorrar" data-toggle="modal" data-target="#exampleModalCenter" id="{{opinion.id}}" src="{{asset("assets/img/basura.png")}}" alt="boton-borrado">
@@ -36,6 +36,41 @@
     </tbody>
   </table>
 </div> 
+
+<div class="modal fade" id="editarOpinion" tabindex="-1" role="dialog" aria-labelledby="editarOpinionTitulo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarOpinionLongTitle">Editar Comentario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        {{form_start(opinionForm, {'attr': {'class': 'formulario noappearance coment-form'}}) }}
+          <div class="form-group">
+            {{form_label(opinionForm.autor)}}
+            {{form_widget(opinionForm.autor, {'attr': {'class': 'form-control'}} )}}
+          </div>
+            <div class="form-group mb-4">
+            {{form_label(opinionForm.comentario)}}
+            {{form_widget(opinionForm.comentario, {'attr': {'class': 'form-control', 'rows': '3'}})}}
+          </div>
+            <div class="form-group mb-4">
+            {{form_label(opinionForm.ciudad)}}
+            {{form_widget(opinionForm.ciudad, {'attr': {'class': 'form-control'}})}}
+          </div>
+        {{form_end(opinionForm)}}
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelarEdit">Cancelar</button>
+        <button type="button" data-dismiss="modal" class="btn btn-warning" id="btnEditar">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

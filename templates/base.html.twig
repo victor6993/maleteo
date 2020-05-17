@@ -31,6 +31,9 @@
 
                     {% if is_granted ('ROLE_ADMIN')%}
                     <li class="nav-item">
+                        <a class="nav-link" href="{{path('impersonation')}}">Entrar como</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{path('solicitudes')}}">Solicitudes</a>
                     </li>
                     <li class="nav-item">

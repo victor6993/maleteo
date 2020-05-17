@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+  {{parent()}}
+  <link href="{{asset('css/signin.css')}}" rel="stylesheet">
+  <link href="{{asset('css/styles.css')}}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+      <div class="container">
+        <div class="card login-card impersonation-form">
+          <div class="row no-gutters">
+            <div class="col-md-12">
+              <div class="card-body card-content">
+                <div class="brand-wrapper text-center">
+                  <img src="assets/img/logo.svg" alt="logo" class="logo" />
+                </div>
+                {# <form action="{{path("impersonation")}}" method="post" class="formulario noappearance coment-form">
+                  <div class="form-group">
+                    <label >Nombre del usuario</label>
+                    <input type="text" class="form-control" required>
+                  </div>
+
+                  <button class="btn btn-warning btn-block btn-acceder-reg" type="submit">Enviar</button>
+                </form> #}
+
+                {{form_start(impersonation, {'attr': {'class': 'formulario noappearance'}}) }}
+                  <div class="form-group mb-4">
+                    {{form_label(impersonation.usuario)}}
+                    {{form_widget(impersonation.usuario, {'attr': {'class': 'form-control'}} )}}
+                  </div>
+                  
+                  <button class="btn btn-warning btn-block btn-acceder-reg" type="submit">Enviar</button>
+                {{form_end(impersonation)}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}

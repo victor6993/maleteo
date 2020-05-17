@@ -251,6 +251,10 @@ footer {
   line-height: 2 !important;
 }
 
+.impersonation-form {
+  max-width: 50% !important;
+}
+
 .btnBorrar , .btnEdit {
   color:#f9a519; 
   cursor: pointer;

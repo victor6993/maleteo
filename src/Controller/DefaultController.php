@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\OpinionForm;
 use App\Form\RegisterForm;
 use App\Form\UserForm;
+use App\Form\Impersonation;
 use App\Security\FormAuthAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -16,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
@@ -51,7 +53,7 @@ class DefaultController extends AbstractController
     } catch(\Exception $e) {
           
       $logger->error("Error cargando opiniones:: $e");
-    }
+      return $this->render("maleteo/landing.html.twig", ['userForm' => $form->createView(), 'opinion1' => $opinion1, 'opinion2' => $opinion2, 'opinion3' => $opinion3 ]);    }
 
   }
 
@@ -93,11 +95,43 @@ class DefaultController extends AbstractController
    */
   public function solicitud(EntityManagerInterface $em) 
   {
+    $form = $this->createForm(UserForm::class);
     $repo = $em->getRepository(UsuarioDemo::class);
     $solicitudesDemo = $repo->findAll();
 
-    return $this->render("maleteo/solicitudes.html.twig", ['solicitudes' => $solicitudesDemo]);
+    return $this->render("maleteo/solicitudes.html.twig", ['solicitudes' => $solicitudesDemo, 'userForm' => $form->createView()]);
   }
+
+  /**
+   * @Route("/solicitudes/{id}/editar" , methods = {"POST"}, name = "editarSolicitud")
+   * @IsGranted("ROLE_ADMIN")
+   */
+  public function editarSolicitud(EntityManagerInterface $em, Request $request, $id) {
+
+    $datos = json_decode($request->getContent(), true);
+
+        $solicitud = $em->getRepository(UsuarioDemo::class)->find($id);
+    
+        // if (!$opinion) {
+        //     throw $this->createNotFoundException(
+        //         'No product found for id '.$id
+        //     );
+        // }
+    
+        $solicitud->setNombre($datos['nombre']);
+        $solicitud->setEmail($datos['email']);
+        $solicitud->setCiudad($datos['ciudad']);        
+        $em->flush();
+
+        $solicitudActualizada = $em->getRepository(UsuarioDemo::class)->find($id);
+    
+        return new JsonResponse(['nombre' => $solicitudActualizada->getNombre(), 'ciudad' => $solicitudActualizada->getCiudad(), 'email' => $solicitudActualizada->getEmail()]);
+
+    // }
+
+
+  }
+
 
   /**
    * @Route("/solicitudes/{id}/borrar" , name = "borrarSolicitud")
@@ -148,10 +182,45 @@ class DefaultController extends AbstractController
    */
   public function listaSolicitudes(EntityManagerInterface $em) 
   {
+    $form = $this->createForm(OpinionForm::class);
     $repo = $em->getRepository(Opinion::class);
     $opiniones = $repo->findAll();
 
-    return $this->render("maleteo/listaOpiniones.html.twig", ['opiniones' => $opiniones]);
+    return $this->render("maleteo/listaOpiniones.html.twig", ['opiniones' => $opiniones, 'opinionForm' => $form->createView()]);
+  }
+
+  /**
+   * @Route("/opiniones/{id}/editar" , methods = {"POST"}, name = "editarOpinion")
+   * @IsGranted("ROLE_ADMIN")
+   */
+  public function editarOpinion(EntityManagerInterface $em, Request $request, $id) {
+
+    $datos = json_decode($request->getContent(), true);
+    // dd($datos);
+
+        $opinion = $em->getRepository(Opinion::class)->find($id);
+    
+        // if (!$opinion) {
+        //     throw $this->createNotFoundException(
+        //         'No product found for id '.$id
+        //     );
+        // }
+    
+        $opinion->setComentario($datos['comentario']);
+        $opinion->setAutor($datos['autor']);
+        $opinion->setCiudad($datos['ciudad']);        
+        $em->flush();
+
+        $opinionActualizada = $em->getRepository(Opinion::class)->find($id);
+
+        // dd($opinionActualizada->getAutor());
+    
+        return new JsonResponse(['autor' => $opinionActualizada->getAutor(), 'ciudad' => $opinionActualizada->getCiudad(), 'comentario' => $opinionActualizada->getComentario()]);
+
+    // }
+
+    // $entityManager = $this->getDoctrine()->getManager();
+
   }
 
     /**
@@ -217,6 +286,24 @@ class DefaultController extends AbstractController
 
     return $this->render("maleteo/register.html.twig", ['registerForm' => $form->createView()]);
   }
+
+  /**
+   * @Route("/entrar-como", name = "impersonation")
+   */
+  public function entrarComo(EntityManagerInterface $em, Request $request) 
+  {
+    $form = $this->createForm(Impersonation::class);
+    $form->handleRequest($request);
+
+    if($form->isSubmitted() && $form->isValid()) {
+      $datos = $request->getContent();
+      dd($datos);
+      
+    } 
+  
+    return $this->render("maleteo/impersonation.html.twig", ['impersonation' => $form->createView()]);
+  }
+
   
   /**
    * @Route("/perfil/{user}", name = "perfil")

@@ -26,7 +26,7 @@
         <td>{{solicitud.email}}</td>
         <td>{{solicitud.ciudad}}</td>
         <td>  
-          <img class="btnEdit" id="{{solicitud.id}}" src="{{asset("assets/img/edit.png")}}" alt="boton-editar">
+          <img class="btnEdit" id="{{solicitud.id}}" data-toggle="modal" data-target="#editarOpinion" src="{{asset("assets/img/edit.png")}}" alt="boton-editar">
         </td>
         <td>
           <img class="btnBorrar" data-toggle="modal" data-target="#exampleModalCenter" id="{{solicitud.id}}" src="{{asset("assets/img/basura.png")}}" alt="boton-borrado">
@@ -36,6 +36,46 @@
     </tbody>
   </table>
 </div> 
+
+<div class="modal fade" id="editarOpinion" tabindex="-1" role="dialog" aria-labelledby="editarOpinionTitulo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarOpinionLongTitle">Editar Solicitud</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+         {{form_start(userForm, {'attr': {'class': 'formulario noappearance', 'id': 'form-demo'}}) }}
+
+        <div class="form-group">
+          {{form_label(userForm.nombre)}}
+          {{form_widget(userForm.nombre, {'attr': {'class': 'form-control'}})}}
+        </div>
+        <div class="form-group mb-4">
+          {{form_label(userForm.email)}}
+          {{form_widget(userForm.email, {'attr': {'class': 'form-control'}})}}
+        </div>
+        <div class="form-group mb-4">
+          {{form_label(userForm.ciudad)}}
+          {{form_widget(userForm.ciudad, {'attr': {'class': 'form-control'}})}}
+        </div>
+        {# <div class="politicaPrivacidad">
+            {# {{form_widget(userForm.politica)}} 
+          {{form_label(userForm.politica)}} 
+        </div> #}
+      {{form_end(userForm)}}
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelarEdit">Cancelar</button>
+        <button type="button" data-dismiss="modal" class="btn btn-warning" id="btnEditar">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
