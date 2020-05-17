@@ -7,7 +7,7 @@ for(let i = 0; i < btnBorrar.length; i++) {
 
   btnEditar[i].addEventListener("click", (e) => {
     let id = e.target.id;
-
+    
     let editar = (callback) => {
       $('#btnEditar').on('click', () => {
         callback(true);
@@ -19,7 +19,7 @@ for(let i = 0; i < btnBorrar.length; i++) {
     }
 
     editar((confirm) => {
-      if(confirm) {
+      if(confirm !== false) {
         let data = {
           autor: document.getElementById('opinion_form_autor').value,
           comentario: document.getElementById('opinion_form_comentario').value,
@@ -37,6 +37,8 @@ for(let i = 0; i < btnBorrar.length; i++) {
           btnEditar[i].parentNode.parentNode.childNodes[7].innerText = datosActualizados.comentario;
           document.getElementById('opinion_form_autor').parentNode.parentNode.reset();
         });
+      } else {
+        return;
       }
     });
   });

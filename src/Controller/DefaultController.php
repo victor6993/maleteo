@@ -212,15 +212,10 @@ class DefaultController extends AbstractController
         $em->flush();
 
         $opinionActualizada = $em->getRepository(Opinion::class)->find($id);
-
-        // dd($opinionActualizada->getAutor());
     
         return new JsonResponse(['autor' => $opinionActualizada->getAutor(), 'ciudad' => $opinionActualizada->getCiudad(), 'comentario' => $opinionActualizada->getComentario()]);
 
     // }
-
-    // $entityManager = $this->getDoctrine()->getManager();
-
   }
 
     /**
@@ -239,18 +234,6 @@ class DefaultController extends AbstractController
     // return $this->redirectToRoute('listaOpiniones');
     return new JsonResponse(['msg', "Se ha borrado el comentario #$id correctamente"]);
   }
-  //   /**
-  //  * @Route("/opiniones/{id}/borrar" , name = "borrarOpinion")
-  //  * @IsGranted("ROLE_ADMIN")
-  //  */
-  // public function borrarOpinion(Opinion $opinion, EntityManagerInterface $em) {
-  //   $em->remove($opinion);
-  //   $em->flush();
-
-  //   // return new RedirectResponse('/listaOpiniones');
-  //   return $this->redirectToRoute('listaOpiniones');
-  // }
-
   
   /**
    * @Route("/register", name = "register")
@@ -302,6 +285,15 @@ class DefaultController extends AbstractController
     } 
   
     return $this->render("maleteo/impersonation.html.twig", ['impersonation' => $form->createView()]);
+  }
+
+  /**
+   * @Route("/?_switch_user={user}", methods = {"POST"}, name = "switchUser")
+   */
+  public function entrarComoXUser($user, Request $request) 
+  {
+    $datos = json_decode($request->getContent(), true);
+    dd($datos);
   }
 
   

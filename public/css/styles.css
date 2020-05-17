@@ -195,9 +195,11 @@
   margin: 5px 0 10px;
 }
 
-.a-politica {
+.parrafoPolitica {
   text-decoration: underline;
   color: #f9a519;
+  cursor: pointer;
+  display: inline;
 }
 
 /* .opinion-texto {
